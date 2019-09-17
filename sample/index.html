@@ -28,7 +28,13 @@
 
 <script src="../build/ckeditor.js"></script>
 <script>
-	InlineEditor.create( document.querySelector( '#editor' ) )
+	InlineEditor.create( document.querySelector( '#editor' ), {
+		wordCount: {
+            onUpdate: stats => {
+				console.log(stats);
+			}
+		}
+	} )
 		.then( editor => {
 			window.editor = editor;
 		} )

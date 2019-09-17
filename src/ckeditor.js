@@ -12,7 +12,8 @@ import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
-import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
+//import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
+import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import Image from '@ckeditor/ckeditor5-image/src/image';
@@ -25,8 +26,10 @@ import List from '@ckeditor/ckeditor5-list/src/list';
 import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
-import Table from '@ckeditor/ckeditor5-table/src/table';
-import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
+//import Table from '@ckeditor/ckeditor5-table/src/table';
+//import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
+import AlignmentPlugin from '@ckeditor/ckeditor5-alignment/src/alignment';
+import WordCount from '@ckeditor/ckeditor5-word-count/src/wordcount';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -37,8 +40,9 @@ InlineEditor.builtinPlugins = [
 	Autoformat,
 	Bold,
 	Italic,
-	BlockQuote,
-	CKFinder,
+	//BlockQuote,
+	//CKFinder,
+	Base64UploadAdapter,
 	EasyImage,
 	Heading,
 	Image,
@@ -51,8 +55,10 @@ InlineEditor.builtinPlugins = [
 	MediaEmbed,
 	Paragraph,
 	PasteFromOffice,
-	Table,
-	TableToolbar
+	//Table,
+	//TableToolbar
+	AlignmentPlugin,
+	WordCount
 ];
 
 // Editor configuration.
@@ -61,14 +67,15 @@ InlineEditor.defaultConfig = {
 		items: [
 			'heading',
 			'|',
+			'alignment',
 			'bold',
 			'italic',
 			'link',
 			'bulletedList',
 			'numberedList',
 			'imageUpload',
-			'blockQuote',
-			'insertTable',
+			//'blockQuote',
+			//'insertTable',
 			'mediaEmbed',
 			'undo',
 			'redo'
@@ -82,11 +89,37 @@ InlineEditor.defaultConfig = {
 			'imageTextAlternative'
 		]
 	},
-	table: {
-		contentToolbar: [
-			'tableColumn',
-			'tableRow',
-			'mergeTableCells'
+	heading: {
+		options: [
+			{
+				model: 'paragraph',
+				title: 'Paragrafo',
+				'class': 'ck-heading_paragraph'
+			},
+			{
+				model: 'heading3',
+				view: 'h3',
+				title: 'Titolo H3',
+				'class': 'ck-heading_heading3'
+			},
+			{
+				model: 'heading4',
+				view: 'h4',
+				title: 'Titolo H4',
+				'class': 'ck-heading_heading4'
+			},
+			{
+				model: 'heading5',
+				view: 'h5',
+				title: 'Titolo H5',
+				'class': 'ck-heading_heading5'
+			},
+			{
+				model: 'heading6',
+				view: 'h6',
+				title: 'Titolo H6',
+				'class': 'ck-heading_heading6'
+			}
 		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
